@@ -23,6 +23,8 @@
   ],
   "activationEvents": [
     "onStartupFinished",
+    "onView:ephemeraInstances",
+    "onView:ephemeraPlans",
     "onCommand:ephemera.openConsole",
     "onCommand:ephemera.refreshInstances",
     "onCommand:ephemera.createInstance",

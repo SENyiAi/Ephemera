@@ -67,6 +67,10 @@ function registerCommands(context: vscode.ExtensionContext, secretStorage: vscod
             if (token) { await cfClient.setToken(token); vscode.window.showInformationMessage('Cloudflare Token 设置成功'); }
         },
         'ephemera.openConsole': () => EphemeraPanel.createOrShow(context.extensionUri, apiClient, cfClient),
+        'ephemera.viewInstanceDetails': (item: InstanceTreeItem) => {
+            EphemeraPanel.createOrShow(context.extensionUri, apiClient, cfClient);
+            // 这里可以添加逻辑让 Panel 自动滚动到该实例，但目前列表较小时直接打开即可
+        },
         'ephemera.refreshInstances': () => { refreshAll(); vscode.window.showInformationMessage('已刷新'); },
         'ephemera.createInstance': () => vscode.commands.executeCommand('ephemera.openConsole'),
         'ephemera.copyIP': (item: InstanceTreeItem) => { vscode.env.clipboard.writeText(item.instance.ipv4); vscode.window.showInformationMessage('IP 已复制'); },

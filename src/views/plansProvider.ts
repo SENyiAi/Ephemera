@@ -8,6 +8,11 @@ export class PlanTreeItem extends vscode.TreeItem {
         this.tooltip = `套餐: ${plan.name}\nCPU: ${plan.cpu}核\n内存: ${plan.memory}MB\n磁盘: ${plan.disk}G\n库存: ${plan.stock}`;
         this.iconPath = new vscode.ThemeIcon('package');
         this.contextValue = 'plan';
+        this.command = {
+            command: 'ephemera.openConsole',
+            title: '创建实例',
+            arguments: [plan]
+        };
     }
 }
 

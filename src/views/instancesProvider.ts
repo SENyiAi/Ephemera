@@ -15,6 +15,12 @@ export class InstanceTreeItem extends vscode.TreeItem {
         this.iconPath = s === 'active' ? new vscode.ThemeIcon('pass-filled', new vscode.ThemeColor('debugIcon.startForeground')) : 
                         s === 'stopped' ? new vscode.ThemeIcon('error', new vscode.ThemeColor('debugIcon.stopForeground')) : 
                         new vscode.ThemeIcon('history');
+
+        this.command = {
+            command: 'ephemera.viewInstanceDetails',
+            title: '查看详情',
+            arguments: [this]
+        };
     }
 }
 
