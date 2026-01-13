@@ -13,32 +13,40 @@ let statusBarItem: vscode.StatusBarItem;
 let autoRefreshInterval: NodeJS.Timeout | undefined;
 
 export async function activate(context: vscode.ExtensionContext) {
-    const config = vscode.workspace.getConfiguration('ephemera');
-    const baseUrl = config.get<string>('apiBaseUrl') || 'https://app.alice.ws';
-    
-    apiClient = new EphemeraAPIClient(baseUrl);
-    cfClient = new CloudflareClient(context);
+    console.log('Ephemera: Activating...');
+    try {
+        const config = vscode.workspace.getConfiguration('ephemera');
+        const baseUrl = config.get<string>('apiBaseUrl') || 'https://app.alice.ws';
+        
+        apiClient = new EphemeraAPIClient(baseUrl);
+        cfClient = new CloudflareClient(context);
 
-    const secretStorage = context.secrets;
-    const clientId = await secretStorage.get('ephemera.clientId');
-    const secret = await secretStorage.get('ephemera.clientSecret');
+        const secretStorage = context.secrets;
+        const clientId = await secretStorage.get('ephemera.clientId');
+        const secret = await secretStorage.get('ephemera.clientSecret');
 
-    if (clientId && secret) {
-        apiClient.setCredentials({ clientId, secret });
+        if (clientId && secret) {
+            apiClient.setCredentials({ clientId, secret });
+        }
+
+        instancesProvider = new InstancesProvider(apiClient);
+        plansProvider = new PlansProvider(apiClient);
+        vscode.window.registerTreeDataProvider('ephemeraInstances', instancesProvider);
+        vscode.window.registerTreeDataProvider('ephemeraPlans', plansProvider);
+
+        statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+        statusBarItem.command = 'ephemera.openConsole';
+        context.subscriptions.push(statusBarItem);
+        
+        registerCommands(context, secretStorage);
+        setupAutoRefresh();
+        updateStatusBar();
+        
+        console.log('Ephemera: Activated successfully');
+    } catch (e) {
+        console.error('Ephemera: Activation failed', e);
+        vscode.window.showErrorMessage(`Ephemera 扩展激活失败: ${e}`);
     }
-
-    instancesProvider = new InstancesProvider(apiClient);
-    plansProvider = new PlansProvider(apiClient);
-    vscode.window.registerTreeDataProvider('ephemeraInstances', instancesProvider);
-    vscode.window.registerTreeDataProvider('ephemeraPlans', plansProvider);
-
-    statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-    statusBarItem.command = 'ephemera.openConsole';
-    context.subscriptions.push(statusBarItem);
-    updateStatusBar();
-
-    registerCommands(context, secretStorage);
-    setupAutoRefresh();
 }
 
 function registerCommands(context: vscode.ExtensionContext, secretStorage: vscode.SecretStorage) {

@@ -22,7 +22,12 @@
     "ssh"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onCommand:ephemera.openConsole",
+    "onCommand:ephemera.refreshInstances",
+    "onCommand:ephemera.createInstance",
+    "onCommand:ephemera.setCredentials",
+    "onCommand:ephemera.setCloudflareToken"
   ],
   "main": "./dist/extension.js",
   "contributes": {
