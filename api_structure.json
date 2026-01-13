@@ -1,0 +1,94 @@
+{
+  "category": "Account",
+  "endpoints": [
+    {
+      "name": "Get User Profile",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/account/profile",
+      "description": "<p>获取用户基本信息</p>\n"
+    },
+    {
+      "name": "Get SSH Keys",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/account/ssh-keys",
+      "description": "<p>获取SSH密钥列表</p>\n"
+    }
+  ]
+}
+{
+  "category": "EVO Instances",
+  "endpoints": [
+    {
+      "name": "Get EVO Permissions",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/permissions",
+      "description": "<p>获取EVO权限信息</p>\n"
+    },
+    {
+      "name": "Get EVO Plans",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/plans",
+      "description": "<p>获取可用的EVO计划列表</p>\n"
+    },
+    {
+      "name": "Get OS Images by Plan",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/plans/:id/os-images",
+      "description": "<p>根据计划ID获取可用的OS镜像列表</p>\n"
+    },
+    {
+      "name": "Deploy EVO Instance",
+      "method": "POST",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/deploy",
+      "description": "<p>部署新的EVO实例</p>\n<p>参数说明：</p>\n<ul>\n<li>product_id: 计划ID（必需）</li>\n<li>os_id: 操作系统ID（必需）</li>\n<li>time: 使用时长（小时）（必需）</li>\n<li>ssh_key_id: SSH密钥ID（可选）</li>\n<li>boot_script: Base64编码的启动脚本（可选）</li>\n</ul>\n"
+    },
+    {
+      "name": "List EVO Instances",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/instances",
+      "description": "<p>获取当前用户的所有EVO实例列表</p>\n"
+    },
+    {
+      "name": "Delete EVO Instance",
+      "method": "DELETE",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id",
+      "description": "<p>删除（销毁）指定的EVO实例</p>\n"
+    },
+    {
+      "name": "Get Instance State",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/state",
+      "description": "<p>获取EVO实例的详细状态信息</p>\n"
+    },
+    {
+      "name": "Instance Power Operation",
+      "method": "POST",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/power",
+      "description": "<p>执行实例电源操作</p>\n<p>可用的操作：</p>\n<ul>\n<li>boot: 启动</li>\n<li>shutdown: 关机</li>\n<li>restart: 重启</li>\n<li>poweroff: 强制关机</li>\n</ul>\n"
+    },
+    {
+      "name": "Rebuild Instance",
+      "method": "POST",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/rebuild",
+      "description": "<p>重装EVO实例系统</p>\n<p>参数说明：</p>\n<ul>\n<li><p>os_id: 操作系统ID（必需）</p>\n</li>\n<li><p>ssh_key_id: SSH密钥ID（可选）</p>\n</li>\n<li><p>boot_script: Base64编码的启动脚本（可选）</p>\n</li>\n</ul>\n"
+    },
+    {
+      "name": "Renew Instance",
+      "method": "POST",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/renewals",
+      "description": "<p>续费EVO实例</p>\n<p>参数说明：</p>\n<ul>\n<li>time: 续费时长（小时）（必需）</li>\n</ul>\n"
+    },
+    {
+      "name": "Execute Command on Instance",
+      "method": "POST",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/exec",
+      "description": "<p>在指定EVO实例上异步执行远程命令</p>\n<p>参数说明：</p>\n<ul>\n<li>id: 实例ID（URL路径参数，必需）</li>\n<li>command: Base64编码的命令（必需）</li>\n</ul>\n<p>返回command_uid用于查询执行结果</p>\n"
+    },
+    {
+      "name": "Get Instance Command Result",
+      "method": "GET",
+      "url": "https://app.alice.ws/cli/v1/evo/instances/:id/exec/:uid",
+      "description": "<p>获取指定实例上的远程命令执行结果</p>\n<p>参数说明：</p>\n<ul>\n<li>id: 实例ID（URL路径参数，必需）</li>\n<li>uid: 命令UID（URL路径参数，必需）</li>\n</ul>\n<p>返回数据包含：</p>\n<ul>\n<li>status: 命令状态</li>\n<li>result: 执行结果</li>\n<li>output: 命令输出</li>\n</ul>\n"
+    }
+  ]
+}

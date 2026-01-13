@@ -1,0 +1,306 @@
+{
+  "name": "ephemera-vscode",
+  "displayName": "Ephemera Manager",
+  "description": "管理 Ephemera EVO 云实例的 VS Code 扩展",
+  "version": "0.1.0",
+  "publisher": "ephemera",
+  "icon": "resources/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "ephemera",
+    "cloud",
+    "server",
+    "remote",
+    "ssh"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ephemera.setCredentials",
+        "title": "设置 API 凭据",
+        "category": "Ephemera"
+      },
+      {
+        "command": "ephemera.refreshInstances",
+        "title": "刷新实例列表",
+        "category": "Ephemera",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "ephemera.createInstance",
+        "title": "创建新实例",
+        "category": "Ephemera",
+        "icon": "$(add)"
+      },
+      {
+        "command": "ephemera.deleteInstance",
+        "title": "删除实例",
+        "category": "Ephemera",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "ephemera.viewInstanceDetails",
+        "title": "查看实例详情",
+        "category": "Ephemera",
+        "icon": "$(info)"
+      },
+      {
+        "command": "ephemera.startInstance",
+        "title": "启动实例",
+        "category": "Ephemera",
+        "icon": "$(debug-start)"
+      },
+      {
+        "command": "ephemera.stopInstance",
+        "title": "停止实例",
+        "category": "Ephemera",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "ephemera.restartInstance",
+        "title": "重启实例",
+        "category": "Ephemera",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "ephemera.renewInstance",
+        "title": "续费实例",
+        "category": "Ephemera",
+        "icon": "$(clock)"
+      },
+      {
+        "command": "ephemera.rebuildInstance",
+        "title": "重装系统",
+        "category": "Ephemera",
+        "icon": "$(debug-restart-frame)"
+      },
+      {
+        "command": "ephemera.executeCommand",
+        "title": "执行命令",
+        "category": "Ephemera",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "ephemera.connectSSH",
+        "title": "SSH 连接",
+        "category": "Ephemera",
+        "icon": "$(remote)"
+      },
+      {
+        "command": "ephemera.copyIP",
+        "title": "复制 IP 地址",
+        "category": "Ephemera",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "ephemera.copyPassword",
+        "title": "复制密码",
+        "category": "Ephemera",
+        "icon": "$(key)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ephemera-sidebar",
+          "title": "Ephemera",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "ephemera-sidebar": [
+        {
+          "id": "ephemeraInstances",
+          "name": "实例列表"
+        },
+        {
+          "id": "ephemeraPlans",
+          "name": "可用套餐"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "ephemera.refreshInstances",
+          "when": "view == ephemeraInstances",
+          "group": "navigation"
+        },
+        {
+          "command": "ephemera.createInstance",
+          "when": "view == ephemeraInstances",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "ephemera.viewInstanceDetails",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "inline@1"
+        },
+        {
+          "command": "ephemera.connectSSH",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "inline@2"
+        },
+        {
+          "command": "ephemera.startInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "power@1"
+        },
+        {
+          "command": "ephemera.stopInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "power@2"
+        },
+        {
+          "command": "ephemera.restartInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "power@3"
+        },
+        {
+          "command": "ephemera.renewInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "manage@1"
+        },
+        {
+          "command": "ephemera.rebuildInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "manage@2"
+        },
+        {
+          "command": "ephemera.executeCommand",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "manage@3"
+        },
+        {
+          "command": "ephemera.copyIP",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "copy@1"
+        },
+        {
+          "command": "ephemera.copyPassword",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "copy@2"
+        },
+        {
+          "command": "ephemera.deleteInstance",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "danger@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "ephemera.deleteInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.viewInstanceDetails",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.startInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.stopInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.restartInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.renewInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.rebuildInstance",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.executeCommand",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.connectSSH",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.copyIP",
+          "when": "false"
+        },
+        {
+          "command": "ephemera.copyPassword",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Ephemera",
+      "properties": {
+        "ephemera.apiBaseUrl": {
+          "type": "string",
+          "default": "https://app.alice.ws",
+          "description": "Ephemera API 基础 URL"
+        },
+        "ephemera.autoRefreshInterval": {
+          "type": "number",
+          "default": 60,
+          "description": "自动刷新实例列表的间隔（秒），设为 0 禁用自动刷新"
+        },
+        "ephemera.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "在状态栏显示实例数量"
+        },
+        "ephemera.defaultOS": {
+          "type": "number",
+          "default": 1,
+          "description": "默认操作系统 ID (1=Debian 12)"
+        },
+        "ephemera.defaultPlan": {
+          "type": "number",
+          "default": 38,
+          "description": "默认套餐 ID (38=SLC.Evo.Micro)"
+        },
+        "ephemera.defaultTime": {
+          "type": "number",
+          "default": 24,
+          "description": "默认实例使用时长（小时）"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.0",
+    "@vscode/test-electron": "^2.3.8"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

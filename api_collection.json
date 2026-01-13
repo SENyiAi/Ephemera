@@ -1,0 +1,2251 @@
+{
+  "info": {
+    "_postman_id": "f377a53a-d4c5-4da4-b00c-8e68740935b2",
+    "name": "Ephemera API 2.0",
+    "description": "<html><head></head><body><p>Alice EVO Cloud API Documentation - Updated to RESTful style</p>\n<p>Bearer: API Client ID:Secret</p>\n<p>cli_3513398930150a8:8b82a40a06e53e3a5d70ccc8fe6376abdea07eae532634f6e03ba47c138f2b51</p>\n</body></html>",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+    "toc": [],
+    "owner": "43832360",
+    "collectionId": "f377a53a-d4c5-4da4-b00c-8e68740935b2",
+    "publishedId": "2sB3dHVt8J",
+    "public": true,
+    "customColor": {
+      "top-bar": "FFFFFF",
+      "right-sidebar": "303030",
+      "highlight": "FF6C37"
+    },
+    "publishDate": "2025-11-23T16:11:56.000Z"
+  },
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get User Profile",
+          "id": "0a1e233f-3dba-4d3a-a721-0abadb2a89fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/account/profile",
+            "description": "<p>获取用户基本信息</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "account",
+                "profile"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "15733a80-5737-4f79-b6e7-03b4c9c08903",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://app.alice.ws/cli/v1/account/profile"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 12:12:12 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=T7W%2FDFmdowZa%2Buh%2B5B7X8IsRr2BxyTcUrzYrnWWQabHtkevvWUC2IRZYdy8xOQx0QaUW83zgUC9T75VH%2FogAzxpdoYLLj4QFfNgg\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a3092d268e2c95c-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"address_1\": \" Default address\",\n        \"address_2\": null,\n        \"city\": \"Default City\",\n        \"country\": \"Zimbabwe\",\n        \"credit\": 11111,\n        \"default_card\": -1,\n        \"email\": \"test@alice.ws\",\n        \"fullname\": \"Default Full Name\",\n        \"github_id\": null,\n        \"google_id\": null,\n        \"grade\": 1,\n        \"id\": 1,\n        \"language\": \"zh-cn\",\n        \"lastlogin_date\": \"2025-11-23T10:43:09Z\",\n        \"lastlogin_ip\": \"127.0.0.1\",\n        \"max_instances\": 10,\n        \"points\": 126970,\n        \"points_spent\": 19960,\n        \"postcode\": \"00001\",\n        \"register_date\": \"2024-10-26T17:29:57+01:00\",\n        \"register_ip\": \"127.0.0.1\",\n        \"risk_amnesty_period\": \"2024-11-17T22:40:58Z\",\n        \"status\": 1,\n        \"total_spent\": 13853400,\n        \"updated_at\": \"2025-11-23T12:00:43Z\",\n        \"username\": \"test\"\n    },\n    \"message\": \"success\"\n}"
+            }
+          ],
+          "_postman_id": "0a1e233f-3dba-4d3a-a721-0abadb2a89fd"
+        },
+        {
+          "name": "Get SSH Keys",
+          "id": "cb4d35bb-cd66-40af-aafe-71f706ed2b6c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/account/ssh-keys",
+            "description": "<p>获取SSH密钥列表</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "account",
+                "ssh-keys"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "176ff8b9-3d24-48a6-8190-5728f9eeb534",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://app.alice.ws/cli/v1/account/ssh-keys"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 12:14:02 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=OB%2FebmFtOAhijfucKAhYBl4YMjtUPQQaWyqe%2FQBAgjvaXI04VP22PopHRg10IDAqKTB3KP0eeToW2zVcJdZn8qATaDawawHtNB%2FB\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a30957f4f6317e5-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"id\": 1095,\n            \"user_id\": 1,\n            \"name\": \"1\",\n            \"node\": 1,\n            \"sid\": 1101,\n            \"publickey\": \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyUEQYcKpo7njfpUNIVcczkJ/CoKjA6gTSxZXaS5xn9+KPgavshThgLeRP1AESY3/J/U81FTceosbve/Z4SmHKN0C/DoslztT5lJ4BQgAvn7wAvagwnrbV5tNxahoH8G1otbuh69EVgXIwFB1m0K1PdxyJC2gXIBvezMUSk5HOJAT81lrZAyNTDJ9Jtl5zvEPH3buMPNnY+9bwQVmUBHA4p78qUBmZ4fFNW6vc1UKD+hAboo1L8SH78erFgeOntRFmT0874/e9oc4AO96TmYhMSA4dbT13vMl1PtbU6nBWGokRL81r9xd4ZPuIM9GFyGTzscJ5XqiJ8VluO5/lZKMz\",\n            \"created_at\": \"2025-10-13T06:36:29+01:00\"\n        }\n    ],\n    \"message\": \"Success\"\n}"
+            }
+          ],
+          "_postman_id": "cb4d35bb-cd66-40af-aafe-71f706ed2b6c"
+        }
+      ],
+      "id": "ce602a30-c473-46fa-b81d-34c2a5fbe684",
+      "_postman_id": "ce602a30-c473-46fa-b81d-34c2a5fbe684",
+      "description": ""
+    },
+    {
+      "name": "EVO Instances",
+      "item": [
+        {
+          "name": "Get EVO Permissions",
+          "id": "9727d627-698e-4755-b3a5-15af7fbf11af",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/permissions",
+            "description": "<p>获取EVO权限信息</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "permissions"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "56268532-2137-4cbc-8e1b-e8431ec46eb2",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://app.alice.ws/cli/v1/evo/permissions"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 17:06:28 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=2V3iaBdSa2vAFfK77hxyEfWJClJuhma9nxJBD0%2BExaOHndo8SFOqvMsDK%2FmR66xLKkJeDNDrneh2ZxjT4yAQtxe8Vgp%2B%2FB6THQcz\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a3241e10b543b83-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"allow_packages\": \"38|39|40|41|42\",\n        \"max_time\": 999,\n        \"plan\": \"Ephemera.VelocityX\",\n        \"plan_id\": 3,\n        \"user_id\": 1\n    },\n    \"message\": \"EVO permissions\"\n}"
+            }
+          ],
+          "_postman_id": "9727d627-698e-4755-b3a5-15af7fbf11af"
+        },
+        {
+          "name": "Get EVO Plans",
+          "id": "19eb1f0d-99b8-417f-b810-e25c429a6d02",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/plans",
+            "description": "<p>获取可用的EVO计划列表</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "plans"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "bbfad33b-ce4f-47bb-acaa-e617c73977f3",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://app.alice.ws/cli/v1/evo/plans"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 17:06:53 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=11iAnbqOE%2FRKLmMIIiyZco6uYa%2F%2BQxJcDs5alguhobKGlRKEk69jiYNud5%2ByL8oi4DZ0NLf2Jj6UJEFYEbVqVuz%2FepO0vMBIp2gc\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a32427858b220b4-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"id\": 38,\n            \"group_id\": 7,\n            \"type\": \"evo-server\",\n            \"name\": \"SLC.Evo.Micro\",\n            \"billing_mode\": 1,\n            \"hidden\": 1,\n            \"stock\": 87,\n            \"vm_hour_price\": 0,\n            \"backup_hour_price\": 0,\n            \"additional_hour_price\": 0,\n            \"traffic_price\": 0,\n            \"disk_type\": \"NVMe\",\n            \"cpu\": 2,\n            \"memory\": 4096,\n            \"disk\": 60,\n            \"upload_speed\": 64000,\n            \"download_speed\": 640000,\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"os\": \"1|2|3|4|5|6|7|8|9|10|13\",\n            \"region\": 2,\n            \"node\": 1,\n            \"resource_pricing_group\": 3,\n            \"supports_ipv4\": 1,\n            \"supports_ipv6\": 1,\n            \"default_ipv4_count\": 1,\n            \"max_ipv4_count\": 1,\n            \"supports_backup\": 0,\n            \"backup_count\": 0,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"routes\": \"No Route Guarantee\",\n            \"recommend\": 0,\n            \"api_config\": \"{\\\"packageId\\\":\\\"2\\\",\\\"hypervisorId\\\":\\\"10\\\",\\\"backupPlan\\\":\\\"1\\\"}\",\n            \"created_at\": \"0001-01-01T00:00:00Z\",\n            \"updated_at\": \"2025-11-23T16:17:35Z\",\n            \"status\": 1\n        },\n        {\n            \"id\": 39,\n            \"group_id\": 7,\n            \"type\": \"evo-server\",\n            \"name\": \"SLC.Evo.Standard\",\n            \"billing_mode\": 1,\n            \"hidden\": 1,\n            \"stock\": 77,\n            \"vm_hour_price\": 0,\n            \"backup_hour_price\": 0,\n            \"additional_hour_price\": 0,\n            \"traffic_price\": 0,\n            \"disk_type\": \"NVMe\",\n            \"cpu\": 4,\n            \"memory\": 8192,\n            \"disk\": 120,\n            \"upload_speed\": 64000,\n            \"download_speed\": 640000,\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"os\": \"1|2|3|4|5|6|7|8|9|10|13\",\n            \"region\": 2,\n            \"node\": 1,\n            \"resource_pricing_group\": 3,\n            \"supports_ipv4\": 1,\n            \"supports_ipv6\": 1,\n            \"default_ipv4_count\": 1,\n            \"max_ipv4_count\": 1,\n            \"supports_backup\": 0,\n            \"backup_count\": 0,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"routes\": \"No Route Guarantee\",\n            \"recommend\": 0,\n            \"api_config\": \"{\\\"packageId\\\":\\\"2\\\",\\\"hypervisorId\\\":\\\"10\\\",\\\"backupPlan\\\":\\\"1\\\"}\",\n            \"created_at\": \"0001-01-01T00:00:00Z\",\n            \"updated_at\": \"2025-11-23T06:14:00Z\",\n            \"status\": 1\n        },\n        {\n            \"id\": 40,\n            \"group_id\": 7,\n            \"type\": \"evo-server\",\n            \"name\": \"SLC.Evo.Pro\",\n            \"billing_mode\": 1,\n            \"hidden\": 1,\n            \"stock\": 100,\n            \"vm_hour_price\": 0,\n            \"backup_hour_price\": 0,\n            \"additional_hour_price\": 0,\n            \"traffic_price\": 0,\n            \"disk_type\": \"NVMe\",\n            \"cpu\": 8,\n            \"memory\": 16384,\n            \"disk\": 200,\n            \"upload_speed\": 64000,\n            \"download_speed\": 640000,\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"os\": \"1|2|3|4|5|6|7|8|9|10|13\",\n            \"region\": 2,\n            \"node\": 1,\n            \"resource_pricing_group\": 3,\n            \"supports_ipv4\": 1,\n            \"supports_ipv6\": 1,\n            \"default_ipv4_count\": 1,\n            \"max_ipv4_count\": 1,\n            \"supports_backup\": 0,\n            \"backup_count\": 0,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"routes\": \"No Route Guarantee\",\n            \"recommend\": 0,\n            \"api_config\": \"{\\\"packageId\\\":\\\"2\\\",\\\"hypervisorId\\\":\\\"10\\\",\\\"backupPlan\\\":\\\"1\\\"}\",\n            \"created_at\": \"0001-01-01T00:00:00Z\",\n            \"updated_at\": \"2025-11-16T17:58:53Z\",\n            \"status\": 1\n        },\n        {\n            \"id\": 41,\n            \"group_id\": 7,\n            \"type\": \"evo-server\",\n            \"name\": \"SLC.Evo.Ultra\",\n            \"billing_mode\": 1,\n            \"hidden\": 1,\n            \"stock\": 98,\n            \"vm_hour_price\": 0,\n            \"backup_hour_price\": 0,\n            \"additional_hour_price\": 0,\n            \"traffic_price\": 0,\n            \"disk_type\": \"NVMe\",\n            \"cpu\": 16,\n            \"memory\": 32768,\n            \"disk\": 300,\n            \"upload_speed\": 64000,\n            \"download_speed\": 640000,\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"os\": \"1|2|3|4|5|6|7|8|9|10|13\",\n            \"region\": 2,\n            \"node\": 1,\n            \"resource_pricing_group\": 3,\n            \"supports_ipv4\": 1,\n            \"supports_ipv6\": 1,\n            \"default_ipv4_count\": 1,\n            \"max_ipv4_count\": 1,\n            \"supports_backup\": 0,\n            \"backup_count\": 0,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"routes\": \"No Route Guarantee\",\n            \"recommend\": 0,\n            \"api_config\": \"{\\\"packageId\\\":\\\"2\\\",\\\"hypervisorId\\\":\\\"10\\\",\\\"backupPlan\\\":\\\"1\\\"}\",\n            \"created_at\": \"0001-01-01T00:00:00Z\",\n            \"updated_at\": \"2025-11-22T09:16:19Z\",\n            \"status\": 1\n        },\n        {\n            \"id\": 42,\n            \"group_id\": 7,\n            \"type\": \"evo-server\",\n            \"name\": \"SLC.Evo.GPU-Ultra\",\n            \"billing_mode\": 1,\n            \"hidden\": 1,\n            \"stock\": 1,\n            \"vm_hour_price\": 0,\n            \"backup_hour_price\": 0,\n            \"additional_hour_price\": 0,\n            \"traffic_price\": 0,\n            \"disk_type\": \"NVMe\",\n            \"cpu\": 8,\n            \"memory\": 32768,\n            \"disk\": 1000,\n            \"gpu\": \"NVIDIA RTX A4000\",\n            \"upload_speed\": 64000,\n            \"download_speed\": 640000,\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"os\": \"1|2|3|4|5|6|7|8|9|10|13\",\n            \"region\": 2,\n            \"node\": 1,\n            \"resource_pricing_group\": 3,\n            \"supports_ipv4\": 1,\n            \"supports_ipv6\": 1,\n            \"default_ipv4_count\": 1,\n            \"max_ipv4_count\": 1,\n            \"supports_backup\": 0,\n            \"backup_count\": 0,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"routes\": \"No Route Guarantee\",\n            \"recommend\": 0,\n            \"api_config\": \"{\\\"packageId\\\":\\\"2\\\",\\\"hypervisorId\\\":\\\"10\\\",\\\"backupPlan\\\":\\\"1\\\"}\",\n            \"created_at\": \"0001-01-01T00:00:00Z\",\n            \"updated_at\": \"2025-10-05T15:55:05+01:00\",\n            \"status\": 0\n        }\n    ],\n    \"message\": \"Success\"\n}"
+            }
+          ],
+          "_postman_id": "19eb1f0d-99b8-417f-b810-e25c429a6d02"
+        },
+        {
+          "name": "Get OS Images by Plan",
+          "id": "b6699d00-c9ed-466c-9642-c48842a8d9b4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/plans/:id/os-images",
+            "description": "<p>根据计划ID获取可用的OS镜像列表</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "plans",
+                ":id",
+                "os-images"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Plan ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "38",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3ac5264-fdd2-4ec7-be01-9c418bd32b3f",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/plans/:id/os-images",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "plans",
+                    ":id",
+                    "os-images"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "38",
+                      "description": "Plan ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 12:26:27 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=wRWdlqniDb3MqUEt599WuLA1S8OTn0P8TixIdc6Uikj62dC7UxCiHT3nrc8%2FAlDFr7c%2Fm%2B5JoKKN6PKOSD3orTnohOTzPcqiZE1J\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a30a7b1a962062f-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"group_id\": 4,\n            \"group_name\": \"AlmaLinux\",\n            \"logo\": \"/assets/image/logos/os-alma-linux.svg\",\n            \"os_list\": [\n                {\n                    \"id\": 7,\n                    \"name\": \"AlmaLinux 8 Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 8,\n                    \"name\": \"AlmaLinux 9 Latest\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                }\n            ]\n        },\n        {\n            \"group_id\": 6,\n            \"group_name\": \"Alpine Linux\",\n            \"logo\": \"/assets/image/logos/alpine_logo.png\",\n            \"os_list\": [\n                {\n                    \"id\": 9,\n                    \"name\": \"Alpine Linux 3.19\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                }\n            ]\n        },\n        {\n            \"group_id\": 1,\n            \"group_name\": \"Debian\",\n            \"logo\": \"/assets/image/logos/os-debian.svg\",\n            \"os_list\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"Debian 12 (Bookworm) Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Debian 11 (Bullseye) Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 10,\n                    \"name\": \"Debian 12 DevKit\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 13,\n                    \"name\": \"Debian 13 (Trixie) Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                }\n            ]\n        },\n        {\n            \"group_id\": 2,\n            \"group_name\": \"Ubuntu\",\n            \"logo\": \"/assets/image/logos/os-ubuntu.svg\",\n            \"os_list\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"Ubuntu Server 20.04 LTS Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 4,\n                    \"name\": \"Ubuntu Server 22.04 LTS Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                }\n            ]\n        },\n        {\n            \"group_id\": 3,\n            \"group_name\": \"Centos\",\n            \"logo\": \"/assets/image/logos/os-centos.svg\",\n            \"os_list\": [\n                {\n                    \"id\": 5,\n                    \"name\": \"CentOS 7 Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                },\n                {\n                    \"id\": 6,\n                    \"name\": \"CentOS Stream 9 Minimal\",\n                    \"port\": 22,\n                    \"username\": \"root\"\n                }\n            ]\n        }\n    ],\n    \"message\": \"Success\"\n}"
+            }
+          ],
+          "_postman_id": "b6699d00-c9ed-466c-9642-c48842a8d9b4"
+        },
+        {
+          "name": "Deploy EVO Instance",
+          "id": "56c16aa0-1fcf-46e8-a901-a8be54d10003",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": 38,\n  \"os_id\": 1,\n  \"time\": 24,\n  \"ssh_key_id\": null,\n  \"boot_script\": \"c3VkbyBhcHQtZ2V0IGluc3RhbGwgY3VybApjdXJsIC1zIGh0dHBzOi8vcGFja2FnZWNsb3VkLmlvL2luc3RhbGwvcmVwb3NpdG9yaWVzL29va2xhL3NwZWVkdGVzdC1jbGkvc2NyaXB0LmRlYi5zaCB8IHN1ZG8gYmFzaApzdWRvIGFwdC1nZXQgaW5zdGFsbCBzcGVlZHRlc3Q=\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://app.alice.ws/cli/v1/evo/instances/deploy",
+            "description": "<p>部署新的EVO实例</p>\n<p>参数说明：</p>\n<ul>\n<li>product_id: 计划ID（必需）</li>\n<li>os_id: 操作系统ID（必需）</li>\n<li>time: 使用时长（小时）（必需）</li>\n<li>ssh_key_id: SSH密钥ID（可选）</li>\n<li>boot_script: Base64编码的启动脚本（可选）</li>\n</ul>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                "deploy"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "3aed42f5-10ce-4243-a3bd-74f34bb82cf0",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": 38,\n  \"os_id\": 1,\n  \"time\": 24,\n  \"ssh_key_id\": null,\n  \"boot_script\": \"c3VkbyBhcHQtZ2V0IGluc3RhbGwgY3VybApjdXJsIC1zIGh0dHBzOi8vcGFja2FnZWNsb3VkLmlvL2luc3RhbGwvcmVwb3NpdG9yaWVzL29va2xhL3NwZWVkdGVzdC1jbGkvc2NyaXB0LmRlYi5zaCB8IHN1ZG8gYmFzaApzdWRvIGFwdC1nZXQgaW5zdGFsbCBzcGVlZHRlc3Q=\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": "https://app.alice.ws/cli/v1/evo/instances/deploy"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 14:25:25 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=JiJfaApbOfhp4GoDPMOnp2pGJQdjVMyR6vQBV0qpThgBB38P%2Fq2HpCAzNXKWGLXm2HaCMSBnXpgu%2BlgaSNCgUw0n4RwWoLWnbgYV\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a3155f2ae5bb208-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"boot_script_uid\": \"82b0996d-301b-4a8e-b3a8-dcb2024ce5c4\",\n        \"cpu\": 2,\n        \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n        \"creation_at\": \"2025-11-23 14:25:25\",\n        \"disk\": 60,\n        \"disk_type\": \"NVMe\",\n        \"download_speed\": 640000,\n        \"expiration_at\": \"2025-11-24 14:25:25\",\n        \"hostname\": \"kuraya.evo.host.aliceinit.dev\",\n        \"id\": 15238,\n        \"ipv4\": \"31.22.111.24\",\n        \"ipv6\": \"2a14:67c0:601::16\",\n        \"memory\": 4096,\n        \"os\": \"Debian 12 (Bookworm) Minimal\",\n        \"os_group\": \"Debian\",\n        \"os_group_id\": 1,\n        \"os_id\": 1,\n        \"password\": \"BKyOxmy01fKiB3jU4zeJ\",\n        \"plan\": \"SLC.Evo.Micro\",\n        \"plan_id\": 38,\n        \"region\": \"Salt Lake City\",\n        \"region_id\": 2,\n        \"routes\": \"No Route Guarantee\",\n        \"show_speed\": \"500↑ / 5000↓ Mbps\",\n        \"status\": \"active\",\n        \"uid\": \"89d69459-f25d-4c38-96bb-ee452de88b9f\",\n        \"upload_speed\": 64000,\n        \"user\": \"root\"\n    },\n    \"message\": \"Created successfully!\"\n}"
+            }
+          ],
+          "_postman_id": "56c16aa0-1fcf-46e8-a901-a8be54d10003"
+        },
+        {
+          "name": "List EVO Instances",
+          "id": "2fe788c1-60d5-4487-9c8b-0fd1a6fdbb85",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/instances",
+            "description": "<p>获取当前用户的所有EVO实例列表</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [
+            {
+              "id": "56104712-dc10-4a00-a6c6-4819d125cd9e",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": "https://app.alice.ws/cli/v1/evo/instances"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 15:28:02 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=88wtJyFZY73Qd8IwbbT59%2FrU1rum96dFyfK7sS9QnXgJKychvG8M1PFSPin9EQdChsNI7lWOMB4NfjLdm1su66bPY%2BZtTLelHghu\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31b1ad38c0c93f-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": [\n        {\n            \"cpu\": 2,\n            \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n            \"creation_at\": \"2025-11-23T14:25:25Z\",\n            \"disk\": \"60\",\n            \"disk_type\": \"NVMe\",\n            \"download_speed\": 640000,\n            \"expiration_at\": \"2025-11-24T14:25:25Z\",\n            \"hostname\": \"test.evo.host.aliceinit.dev\",\n            \"id\": 15238,\n            \"ipv4\": \"31.22.111.24\",\n            \"ipv6\": \"2a14:67c0:601::16\",\n            \"last_recorded_traffic\": null,\n            \"last_reset_at\": null,\n            \"memory\": 4096,\n            \"os\": \"Debian 12 (Bookworm) Minimal\",\n            \"os_group\": \"Debian\",\n            \"os_group_id\": 1,\n            \"os_id\": 1,\n            \"password\": \"BKyOxmy01fKiB3jU4zeJ\",\n            \"plan\": \"SLC.Evo.Micro\",\n            \"plan_id\": 38,\n            \"region\": \"Salt Lake City\",\n            \"region_id\": 2,\n            \"routes\": \"No Route Guarantee\",\n            \"show_speed\": \"500↑ / 5000↓ Mbps\",\n            \"status\": \"active\",\n            \"uid\": \"89d69459-f25d-4c38-96bb-ee452de88b9f\",\n            \"upload_speed\": 64000,\n            \"user\": \"root\"\n        }\n    ],\n    \"message\": \"success\"\n}"
+            }
+          ],
+          "_postman_id": "2fe788c1-60d5-4487-9c8b-0fd1a6fdbb85"
+        },
+        {
+          "name": "Delete EVO Instance",
+          "id": "12a08d91-19f7-4e0b-90ee-9fa509d7a8ec",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id",
+            "description": "<p>删除（销毁）指定的EVO实例</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15238",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3279eb52-ea74-4e11-835b-4ee4cbcfbf0a",
+              "name": "200",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15238",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 15:29:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=bOwK2UI1wQUBfnCZWciGfswBVQiwkueLqgpnfVDIvjCl8PHwbMHZPZpUxYrRXwTGi%2B8cpOlZhTFCoEgo8QZV0D%2FRN1c5IQnuQppQ\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31b3584c8e609d-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": null,\n    \"message\": \"Destroyed successfully!\"\n}"
+            }
+          ],
+          "_postman_id": "12a08d91-19f7-4e0b-90ee-9fa509d7a8ec"
+        },
+        {
+          "name": "Get Instance State",
+          "id": "d6d9014d-2c6b-4820-8a6d-73053f017d89",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/state",
+            "description": "<p>获取EVO实例的详细状态信息</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "state"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ff3aee6f-b0af-4894-9b33-d677b9eb5edc",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/state",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "state"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 15:43:54 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=fyiMDzOFMNCLtLfODfIgmFgbWFWNHUUl%2FB6bxlJZKp0f0g5xbsTOdNMIJSBDCOZGoyNbrcLMB%2BXNOzrpAHJG4vq8Gm4tGjxMikbs\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31c8e90ecec93c-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"cpu\": 2,\n        \"cpu_name\": \"AMD EPYC™ 9654 Genoa\",\n        \"disk\": 60,\n        \"download_speed\": 640000,\n        \"ipv4\": [\n            {\n                \"address\": \"31.22.111.24\",\n                \"gateway\": \"31.22.111.1\",\n                \"netmask\": \"255.255.255.0\",\n                \"resolver1\": \"8.8.8.8\",\n                \"resolver2\": \"8.8.4.4\"\n            }\n        ],\n        \"ipv4_primary\": \"31.22.111.24\",\n        \"ipv6\": [\n            {\n                \"subnet\": \"2a14:67c0:601::16\",\n                \"cidr\": 128,\n                \"gateway\": \"2a14:67c0:601::1\",\n                \"resolver1\": \"2001:4860:4860::8888\",\n                \"resolver2\": \"2001:4860:4860::8844\",\n                \"addresses\": [\n                    \"2a14:67c0:601::16\"\n                ]\n            }\n        ],\n        \"ipv6_primary\": \"2a14:67c0:601::16\",\n        \"memory\": 4096,\n        \"name\": \"SLC.Evo.Micro\",\n        \"state\": {\n            \"memory\": {\n                \"memtotal\": 3861012,\n                \"memfree\": 3375160,\n                \"memavailable\": 3369640\n            },\n            \"cpu\": 0,\n            \"state\": \"running\",\n            \"traffic\": {\n                \"in\": 137527,\n                \"out\": 23452,\n                \"total\": 160979\n            }\n        },\n        \"status\": \"complete\",\n        \"system\": {\n            \"group_name\": \"Debian\",\n            \"logo\": \"/assets/image/logos/os-debian.svg\",\n            \"name\": \"Debian 12 (Bookworm) Minimal\",\n            \"path\": \"15\"\n        },\n        \"upload_speed\": 64000\n    },\n    \"message\": null\n}"
+            }
+          ],
+          "_postman_id": "d6d9014d-2c6b-4820-8a6d-73053f017d89"
+        },
+        {
+          "name": "Instance Power Operation",
+          "id": "cee18d93-69ea-4a60-83ec-12c2b67bca90",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"shutdown\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/power",
+            "description": "<p>执行实例电源操作</p>\n<p>可用的操作：</p>\n<ul>\n<li>boot: 启动</li>\n<li>shutdown: 关机</li>\n<li>restart: 重启</li>\n<li>poweroff: 强制关机</li>\n</ul>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "power"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d88d9a67-e6a3-4e64-9663-3d2e619490a2",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"shutdown\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/power",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "power"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 15:58:45 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=D4vebvgOYanXiyKZtzeHuXUv6%2BQsq%2FjcYXxte45YX%2BMdw2quJ7%2B%2FqF0bqhfEL0qgZlgeMupZWumijYQHTl2mH%2FvRXf31%2F%2BrIHy16\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31deac5da45836-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": null,\n    \"message\": \"Success\"\n}"
+            }
+          ],
+          "_postman_id": "cee18d93-69ea-4a60-83ec-12c2b67bca90"
+        },
+        {
+          "name": "Rebuild Instance",
+          "id": "2cb72802-a8fd-4043-b092-2f90a935dea5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"os_id\": 1,\n  \"ssh_key_id\": null,\n  \"boot_script\": \"c3VkbyBhcHQtZ2V0IGluc3RhbGwgY3VybApjdXJsIC1zIGh0dHBzOi8vcGFja2FnZWNsb3VkLmlvL2luc3RhbGwvcmVwb3NpdG9yaWVzL29va2xhL3NwZWVkdGVzdC1jbGkvc2NyaXB0LmRlYi5zaCB8IHN1ZG8gYmFzaApzdWRvIGFwdC1nZXQgaW5zdGFsbCBzcGVlZHRlc3Q=\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/rebuild",
+            "description": "<p>重装EVO实例系统</p>\n<p>参数说明：</p>\n<ul>\n<li><p>os_id: 操作系统ID（必需）</p>\n</li>\n<li><p>ssh_key_id: SSH密钥ID（可选）</p>\n</li>\n<li><p>boot_script: Base64编码的启动脚本（可选）</p>\n</li>\n</ul>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "rebuild"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f85e4073-eb6d-47f6-a1f1-1452ee341b7c",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"os\": 1,\n  \"sshKey\": null,\n  \"bootScript\": \"c3VkbyBhcHQtZ2V0IGluc3RhbGwgY3VybApjdXJsIC1zIGh0dHBzOi8vcGFja2FnZWNsb3VkLmlvL2luc3RhbGwvcmVwb3NpdG9yaWVzL29va2xhL3NwZWVkdGVzdC1jbGkvc2NyaXB0LmRlYi5zaCB8IHN1ZG8gYmFzaApzdWRvIGFwdC1nZXQgaW5zdGFsbCBzcGVlZHRlc3Q=\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/rebuild",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "rebuild"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 16:00:01 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=81%2Bwnuy91w%2BXP%2FajEIu%2BhLZYBpBygW7At%2FZrsJWlw3X1%2FeX2Yea6TPn0oG6yaNleEjEPgO5a8DtNXhgiXdkyCII8C0TfFAvfw4wi\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31e0881fc1343f-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"boot_script_uid\": \"0c9bbec9-99c0-44d0-bf79-9516f88862fa\",\n        \"hostname\": \"test.evo.host.aliceinit.dev\",\n        \"ipv4\": \"31.22.111.24\",\n        \"ipv6\": \"2a14:67c0:601::16\",\n        \"password\": \"nPczBLOcPBqYpJbZZAYK\",\n        \"sshkey\": null\n    },\n    \"message\": \"Success\"\n}"
+            }
+          ],
+          "_postman_id": "2cb72802-a8fd-4043-b092-2f90a935dea5"
+        },
+        {
+          "name": "Renew Instance",
+          "id": "fa852688-58d1-475e-9297-de469bce0d6a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"time\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/renewals",
+            "description": "<p>续费EVO实例</p>\n<p>参数说明：</p>\n<ul>\n<li>time: 续费时长（小时）（必需）</li>\n</ul>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "renewals"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f730cd0-aa26-4e9c-83ae-df90553004a5",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/renewals",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "renewals"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 16:01:22 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=IYDc8FaTiOxcLGXrlSYsVfqggDHLvlEq4Qh%2FpRftIHBKk%2Fzh9MthcRAuFIK8nrbDklckit6jFINlSt%2FJsLNan8f6m9LIFuGHUQJ2\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31e28268c8177b-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"added_hours\": 1,\n        \"expiration_at\": \"2025-11-24 16:42:26\",\n        \"total_service_hours\": 25\n    },\n    \"message\": \"Server renewal successful. New expiration date: 2025-11-24 16:42:26\"\n}"
+            }
+          ],
+          "_postman_id": "fa852688-58d1-475e-9297-de469bce0d6a"
+        },
+        {
+          "name": "Execute Command on Instance",
+          "id": "2432db2b-82d1-4202-a556-97a929467495",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"command\": \"Y3VybCAtZnNTTCBodHRwczovL2dldC5kb2NrZXIuY29tIHwgc2gK\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/exec",
+            "description": "<p>在指定EVO实例上异步执行远程命令</p>\n<p>参数说明：</p>\n<ul>\n<li>id: 实例ID（URL路径参数，必需）</li>\n<li>command: Base64编码的命令（必需）</li>\n</ul>\n<p>返回command_uid用于查询执行结果</p>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "exec"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e609a396-199f-4eb9-bd19-2dcccd92eecc",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"command\": \"Y3VybCAtZnNTTCBodHRwczovL2dldC5kb2NrZXIuY29tIHwgc2gK\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/exec",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "exec"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 16:04:00 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=UbC2dgbCTCVb9RFMOQCzjQBMXCcfKY%2B72cMhiTC7ojgFulizW4hzOsEw3MBTx36uuhkaT%2Fr4VrQmBu9xQzxET22u4ILIJZFadJVd\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31e660a897080e-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"command_uid\": \"44313048-1f5b-4c34-bae9-46135bf76a4e\"\n    },\n    \"message\": \"Command created successfully\"\n}"
+            }
+          ],
+          "_postman_id": "2432db2b-82d1-4202-a556-97a929467495"
+        },
+        {
+          "name": "Get Instance Command Result",
+          "id": "45cb504a-51f8-4d81-a923-2828f0a18e9a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "basicConfig": [
+                  {
+                    "key": "token",
+                    "value": "<token>"
+                  }
+                ]
+              },
+              "isInherited": false
+            },
+            "method": "GET",
+            "header": [],
+            "url": "https://app.alice.ws/cli/v1/evo/instances/:id/exec/:uid",
+            "description": "<p>获取指定实例上的远程命令执行结果</p>\n<p>参数说明：</p>\n<ul>\n<li>id: 实例ID（URL路径参数，必需）</li>\n<li>uid: 命令UID（URL路径参数，必需）</li>\n</ul>\n<p>返回数据包含：</p>\n<ul>\n<li>status: 命令状态</li>\n<li>result: 执行结果</li>\n<li>output: 命令输出</li>\n</ul>\n",
+            "urlObject": {
+              "path": [
+                "cli",
+                "v1",
+                "evo",
+                "instances",
+                ":id",
+                "exec",
+                ":uid"
+              ],
+              "host": [
+                "https://app.alice.ws"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": {
+                    "content": "<p>Instance ID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "15242",
+                  "key": "id"
+                },
+                {
+                  "description": {
+                    "content": "<p>Command UID</p>\n",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "44313048-1f5b-4c34-bae9-46135bf76a4e",
+                  "key": "uid"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5a6c13b-cf62-41ca-a30a-7c13c8015475",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://app.alice.ws/cli/v1/evo/instances/:id/exec/:uid",
+                  "host": [
+                    "https://app.alice.ws"
+                  ],
+                  "path": [
+                    "cli",
+                    "v1",
+                    "evo",
+                    "instances",
+                    ":id",
+                    "exec",
+                    ":uid"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "15242",
+                      "description": "Instance ID"
+                    },
+                    {
+                      "key": "uid",
+                      "value": "44313048-1f5b-4c34-bae9-46135bf76a4e",
+                      "description": "Command UID"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sun, 23 Nov 2025 16:05:41 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare"
+                },
+                {
+                  "key": "access-control-allow-credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "access-control-allow-headers",
+                  "value": "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With"
+                },
+                {
+                  "key": "access-control-allow-methods",
+                  "value": "POST, OPTIONS, GET, PUT, DELETE, PATCH"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "PleskLin"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "br"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC"
+                },
+                {
+                  "key": "vary",
+                  "value": "accept-encoding"
+                },
+                {
+                  "key": "Nel",
+                  "value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+                },
+                {
+                  "key": "Speculation-Rules",
+                  "value": "\"/cdn-cgi/speculation\""
+                },
+                {
+                  "key": "Report-To",
+                  "value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=qb3Hc%2BHfcxUJxr2%2FrPzRymy7%2FgDMMRM7AcXDpLALt8qb4RFXsoXzfz2lWZqDItTaBC%2FbrBPURXlAQe8CatjNbneoE3HRyjjXhSC2\"}]}"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "9a31e8d52a71f508-IAD"
+                },
+                {
+                  "key": "alt-svc",
+                  "value": "h3=\":443\"; ma=86400"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"code\": 200,\n    \"data\": {\n        \"output\": \"IyBFeGVjdXRpbmcgZG9ja2VyIGluc3RhbGwgc2NyaXB0LCBjb21taXQ6IDdkOTZiZDNjNTIzNWFiMjEyMWJjYjg1NWRkN2IzZjNmMzcxMjhlZDQKKyBzaCAtYyBhcHQtZ2V0IC1xcSB1cGRhdGUgPi9kZXYvbnVsbAorIHNoIC1jIERFQklBTl9GUk9OVEVORD1ub25pbnRlcmFjdGl2ZSBhcHQtZ2V0IC15IC1xcSBpbnN0YWxsIGNhLWNlcnRpZmljYXRlcyBjdXJsID4vZGV2L251bGwKKyBzaCAtYyBpbnN0YWxsIC1tIDA3NTUgLWQgL2V0Yy9hcHQva2V5cmluZ3MKKyBzaCAtYyBjdXJsIC1mc1NMICJodHRwczovL2Rvd25sb2FkLmRvY2tlci5jb20vbGludXgvZGViaWFuL2dwZyIgLW8gL2V0Yy9hcHQva2V5cmluZ3MvZG9ja2VyLmFzYworIHNoIC1jIGNobW9kIGErciAvZXRjL2FwdC9rZXlyaW5ncy9kb2NrZXIuYXNjCisgc2ggLWMgZWNobyAiZGViIFthcmNoPWFtZDY0IHNpZ25lZC1ieT0vZXRjL2FwdC9rZXlyaW5ncy9kb2NrZXIuYXNjXSBodHRwczovL2Rvd25sb2FkLmRvY2tlci5jb20vbGludXgvZGViaWFuIGJvb2t3b3JtIHN0YWJsZSIgPiAvZXRjL2FwdC9zb3VyY2VzLmxpc3QuZC9kb2NrZXIubGlzdAorIHNoIC1jIGFwdC1nZXQgLXFxIHVwZGF0ZSA+L2Rldi9udWxsCisgc2ggLWMgREVCSUFOX0ZST05URU5EPW5vbmludGVyYWN0aXZlIGFwdC1nZXQgLXkgLXFxIGluc3RhbGwgZG9ja2VyLWNlIGRvY2tlci1jZS1jbGkgY29udGFpbmVyZC5pbyBkb2NrZXItY29tcG9zZS1wbHVnaW4gZG9ja2VyLWNlLXJvb3RsZXNzLWV4dHJhcyBkb2NrZXItYnVpbGR4LXBsdWdpbiBkb2NrZXItbW9kZWwtcGx1Z2luID4vZGV2L251bGwKKyBzaCAtYyBkb2NrZXIgdmVyc2lvbgpDbGllbnQ6IERvY2tlciBFbmdpbmUgLSBDb21tdW5pdHkKIFZlcnNpb246ICAgICAgICAgICAyOS4wLjIKIEFQSSB2ZXJzaW9uOiAgICAgICAxLjUyCiBHbyB2ZXJzaW9uOiAgICAgICAgZ28xLjI1LjQKIEdpdCBjb21taXQ6ICAgICAgICA4MTA4MzU3CiBCdWlsdDogICAgICAgICAgICAgTW9uIE5vdiAxNyAxMjozMzo0MCAyMDI1CiBPUy9BcmNoOiAgICAgICAgICAgbGludXgvYW1kNjQKIENvbnRleHQ6ICAgICAgICAgICBkZWZhdWx0CgpTZXJ2ZXI6IERvY2tlciBFbmdpbmUgLSBDb21tdW5pdHkKIEVuZ2luZToKICBWZXJzaW9uOiAgICAgICAgICAyOS4wLjIKICBBUEkgdmVyc2lvbjogICAgICAxLjUyIChtaW5pbXVtIHZlcnNpb24gMS40NCkKICBHbyB2ZXJzaW9uOiAgICAgICBnbzEuMjUuNAogIEdpdCBjb21taXQ6ICAgICAgIGU5ZmYxMGIKICBCdWlsdDogICAgICAgICAgICBNb24gTm92IDE3IDEyOjMzOjQwIDIwMjUKICBPUy9BcmNoOiAgICAgICAgICBsaW51eC9hbWQ2NAogIEV4cGVyaW1lbnRhbDogICAgIGZhbHNlCiBjb250YWluZXJkOgogIFZlcnNpb246ICAgICAgICAgIHYyLjEuNQogIEdpdENvbW1pdDogICAgICAgIGZjZDQzMjIyZDZiMDczNzlhNGJlOTc4NmJkYTUyNDM4ZjBkZDE2YTEKIHJ1bmM6CiAgVmVyc2lvbjogICAgICAgICAgMS4zLjMKICBHaXRDb21taXQ6ICAgICAgICB2MS4zLjMtMC1nZDg0MmQ3NzEKIGRvY2tlci1pbml0OgogIFZlcnNpb246ICAgICAgICAgIDAuMTkuMAogIEdpdENvbW1pdDogICAgICAgIGRlNDBhZDAKCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgpUbyBydW4gRG9ja2VyIGFzIGEgbm9uLXByaXZpbGVnZWQgdXNlciwgY29uc2lkZXIgc2V0dGluZyB1cCB0aGUKRG9ja2VyIGRhZW1vbiBpbiByb290bGVzcyBtb2RlIGZvciB5b3VyIHVzZXI6CgogICAgZG9ja2VyZC1yb290bGVzcy1zZXR1cHRvb2wuc2ggaW5zdGFsbAoKVmlzaXQgaHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ28vcm9vdGxlc3MvIHRvIGxlYXJuIGFib3V0IHJvb3RsZXNzIG1vZGUuCgoKVG8gcnVuIHRoZSBEb2NrZXIgZGFlbW9uIGFzIGEgZnVsbHkgcHJpdmlsZWdlZCBzZXJ2aWNlLCBidXQgZ3JhbnRpbmcgbm9uLXJvb3QKdXNlcnMgYWNjZXNzLCByZWZlciB0byBodHRwczovL2RvY3MuZG9ja2VyLmNvbS9nby9kYWVtb24tYWNjZXNzLwoKV0FSTklORzogQWNjZXNzIHRvIHRoZSByZW1vdGUgQVBJIG9uIGEgcHJpdmlsZWdlZCBEb2NrZXIgZGFlbW9uIGlzIGVxdWl2YWxlbnQKICAgICAgICAgdG8gcm9vdCBhY2Nlc3Mgb24gdGhlIGhvc3QuIFJlZmVyIHRvIHRoZSAnRG9ja2VyIGRhZW1vbiBhdHRhY2sgc3VyZmFjZScKICAgICAgICAgZG9jdW1lbnRhdGlvbiBmb3IgZGV0YWlsczogaHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vZ28vYXR0YWNrLXN1cmZhY2UvCgo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQoK\",\n        \"result\": \"success\",\n        \"status\": \"fetched\"\n    },\n    \"message\": \"success\"\n}"
+            }
+          ],
+          "_postman_id": "45cb504a-51f8-4d81-a923-2828f0a18e9a"
+        }
+      ],
+      "id": "bce3a6af-0cd5-4d54-9645-d9160df1a477",
+      "_postman_id": "bce3a6af-0cd5-4d54-9645-d9160df1a477",
+      "description": ""
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://app.alice.ws",
+      "type": "string"
+    }
+  ]
+}
