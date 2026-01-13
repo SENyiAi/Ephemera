@@ -1,222 +1,68 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-export interface EphemeraCredentials {
-    clientId: string;
-    secret: string;
-}
-
+export interface EphemeraCredentials { clientId: string; secret: string; }
 export interface EphemeraInstance {
-    id: number;
-    uid: string;
-    hostname: string;
-    ipv4: string;
-    ipv6: string;
-    password: string;
-    user: string;
-    status: string;
-    cpu: number;
-    memory: number;
-    disk: string;
-    plan: string;
-    plan_id: number;
-    os: string;
-    region: string;
-    creation_at: string;
-    expiration_at: string;
-    cpu_name: string;
-    disk_type: string;
+    id: number; uid: string; hostname: string; ipv4: string; ipv6: string; password: string; user: string; status: string;
+    cpu: number; memory: number; disk: string; plan: string; plan_id: number; os: string; region: string;
+    creation_at: string; expiration_at: string; cpu_name: string; disk_type: string;
+    state?: { cpu: number; memory?: { memtotal: number; memavailable: number; } };
 }
-
-export interface EphemeraPlan {
-    id: number;
-    name: string;
-    cpu: number;
-    memory: number;
-    disk: number;
-    disk_type: string;
-    cpu_name: string;
-    show_speed: string;
-    stock: number;
-    gpu?: string;
-}
-
-export interface EphemeraOS {
-    id: number;
-    name: string;
-    port: number;
-    username: string;
-}
-
-export interface EphemeraOSGroup {
-    group_id: number;
-    group_name: string;
-    logo: string;
-    os_list: EphemeraOS[];
-}
-
-export interface InstanceState {
-    cpu: number;
-    memory: number;
-    disk: number;
-    state: {
-        state: string;
-        cpu: number;
-        memory: {
-            memtotal: number;
-            memfree: number;
-            memavailable: number;
-        };
-        traffic: {
-            in: number;
-            out: number;
-            total: number;
-        };
-    };
-    ipv4: Array<{
-        address: string;
-        gateway: string;
-        netmask: string;
-    }>;
-    ipv6: Array<{
-        subnet: string;
-        addresses: string[];
-    }>;
-}
-
-export interface CommandResult {
-    status: string; // pending, running, fetched
-    result?: string; // success, error
-    output?: string; // Base64 encoded
-}
+export interface EphemeraPlan { id: number; name: string; cpu: number; memory: number; disk: number; disk_type: string; cpu_name: string; show_speed: string; stock: number; gpu?: string; }
+export interface EphemeraOS { id: number; name: string; port: number; username: string; }
+export interface EphemeraOSGroup { group_id: number; group_name: string; logo: string; os_list: EphemeraOS[]; }
+export interface CommandResult { status: string; result?: string; output?: string; }
 
 export class EphemeraAPIClient {
     private client: AxiosInstance;
     private credentials: EphemeraCredentials | null = null;
 
     constructor(baseURL: string = 'https://app.alice.ws') {
-        this.client = axios.create({
-            baseURL,
-            timeout: 30000,
-            headers: {
-                'Content-Type': 'application/json'
+        this.client = axios.create({ baseURL, timeout: 30000, headers: { 'Content-Type': 'application/json' } });
+        this.client.interceptors.response.use(
+            (res) => res,
+            (err) => {
+                const msg = err.response?.data?.message || err.message;
+                return Promise.reject(new Error(msg));
             }
-        });
+        );
     }
 
-    setCredentials(credentials: EphemeraCredentials) {
-        this.credentials = credentials;
-        this.client.defaults.headers.common['Authorization'] = 
-            `Bearer ${credentials.clientId}:${credentials.secret}`;
+    setCredentials(cred: EphemeraCredentials) {
+        this.credentials = cred;
+        this.client.defaults.headers.common['Authorization'] = `Bearer ${cred.clientId}:${cred.secret}`;
     }
 
-    clearCredentials() {
-        this.credentials = null;
-        delete this.client.defaults.headers.common['Authorization'];
+    hasCredentials(): boolean { return !!this.credentials; }
+
+    private async request<T>(method: 'get' | 'post' | 'delete', path: string, data?: any): Promise<{ code: number; data: T; message: string }> {
+        const res: AxiosResponse = await this.client.request({ method, url: path, data });
+        return res.data;
     }
 
-    hasCredentials(): boolean {
-        return this.credentials !== null;
+    getPlans() { return this.request<EphemeraPlan[]>('get', '/cli/v1/evo/plans'); }
+    getOSImages(planId: number) { return this.request<EphemeraOSGroup[]>('get', `/cli/v1/evo/plans/${planId}/os-images`); }
+    deployInstance(params: any) { return this.request<EphemeraInstance>('post', '/cli/v1/evo/instances/deploy', params); }
+    listInstances() { return this.request<EphemeraInstance[]>('get', '/cli/v1/evo/instances'); }
+    deleteInstance(id: number) { return this.request<any>('delete', `/cli/v1/evo/instances/${id}`); }
+    powerOperation(id: number, action: string) { return this.request<any>('post', `/cli/v1/evo/instances/${id}/power`, { action }); }
+    rebuildInstance(id: number, params: any) { return this.request<any>('post', `/cli/v1/evo/instances/${id}/rebuild`, params); }
+    renewInstance(id: number, hours: number) { return this.request<any>('post', `/cli/v1/evo/instances/${id}/renewals`, { time: hours }); }
+    
+    async executeCommand(id: number, command: string) {
+        const encoded = Buffer.from(command).toString('base64');
+        return this.request<{ command_uid: string }>('post', `/cli/v1/evo/instances/${id}/exec`, { command: encoded });
     }
 
-    // Account APIs
-    async getUserProfile() {
-        const response = await this.client.get('/cli/v1/account/profile');
-        return response.data;
-    }
+    getCommandResult(id: number, uid: string) { return this.request<CommandResult>('get', `/cli/v1/evo/instances/${id}/exec/${uid}`); }
 
-    async getSSHKeys() {
-        const response = await this.client.get('/cli/v1/account/ssh-keys');
-        return response.data;
-    }
-
-    // EVO Instance APIs
-    async getPermissions() {
-        const response = await this.client.get('/cli/v1/evo/permissions');
-        return response.data;
-    }
-
-    async getPlans(): Promise<{ code: number; data: EphemeraPlan[]; message: string }> {
-        const response = await this.client.get('/cli/v1/evo/plans');
-        return response.data;
-    }
-
-    async getOSImages(planId: number): Promise<{ code: number; data: EphemeraOSGroup[]; message: string }> {
-        const response = await this.client.get(`/cli/v1/evo/plans/${planId}/os-images`);
-        return response.data;
-    }
-
-    async deployInstance(params: {
-        product_id: number;
-        os_id: number;
-        time: number;
-        ssh_key_id?: number | null;
-        boot_script?: string | null;
-    }): Promise<{ code: number; data: EphemeraInstance; message: string }> {
-        const response = await this.client.post('/cli/v1/evo/instances/deploy', params);
-        return response.data;
-    }
-
-    async listInstances(): Promise<{ code: number; data: EphemeraInstance[]; message: string }> {
-        const response = await this.client.get('/cli/v1/evo/instances');
-        return response.data;
-    }
-
-    async deleteInstance(instanceId: number) {
-        const response = await this.client.delete(`/cli/v1/evo/instances/${instanceId}`);
-        return response.data;
-    }
-
-    async getInstanceState(instanceId: number): Promise<{ code: number; data: InstanceState; message: string | null }> {
-        const response = await this.client.get(`/cli/v1/evo/instances/${instanceId}/state`);
-        return response.data;
-    }
-
-    async powerOperation(instanceId: number, action: 'boot' | 'shutdown' | 'restart' | 'poweroff') {
-        const response = await this.client.post(`/cli/v1/evo/instances/${instanceId}/power`, { action });
-        return response.data;
-    }
-
-    async rebuildInstance(instanceId: number, params: {
-        os_id: number;
-        ssh_key_id?: number | null;
-        boot_script?: string | null;
-    }) {
-        const response = await this.client.post(`/cli/v1/evo/instances/${instanceId}/rebuild`, params);
-        return response.data;
-    }
-
-    async renewInstance(instanceId: number, hours: number) {
-        const response = await this.client.post(`/cli/v1/evo/instances/${instanceId}/renewals`, { time: hours });
-        return response.data;
-    }
-
-    async executeCommand(instanceId: number, command: string): Promise<{ code: number; data: { command_uid: string }; message: string }> {
-        // Encode command to base64
-        const encodedCommand = Buffer.from(command).toString('base64');
-        const response = await this.client.post(`/cli/v1/evo/instances/${instanceId}/exec`, { 
-            command: encodedCommand 
-        });
-        return response.data;
-    }
-
-    async getCommandResult(instanceId: number, commandUid: string): Promise<{ code: number; data: CommandResult; message: string }> {
-        const response = await this.client.get(`/cli/v1/evo/instances/${instanceId}/exec/${commandUid}`);
-        return response.data;
-    }
-
-    async runCommandAndWait(instanceId: number, command: string, timeoutMs: number = 10000): Promise<string> {
-        const deployRes = await this.executeCommand(instanceId, command);
-        if (deployRes.code !== 200) throw new Error(deployRes.message);
-        const uid = deployRes.data.command_uid;
-        
+    async runCommandAndWait(id: number, cmd: string, timeout: number = 30000): Promise<string> {
+        const { data: { command_uid } } = await this.executeCommand(id, cmd);
         const start = Date.now();
-        while (Date.now() - start < timeoutMs) {
-            const res = await this.getCommandResult(instanceId, uid);
-            if (res.data.status === 'fetched') {
-                return Buffer.from(res.data.output || '', 'base64').toString();
-            }
+        while (Date.now() - start < timeout) {
+            const { data: res } = await this.getCommandResult(id, command_uid);
+            if (res.status === 'fetched') return Buffer.from(res.output || '', 'base64').toString();
             await new Promise(r => setTimeout(r, 1000));
         }
-        throw new Error('Command timed out');
+        throw new Error('Command timeout');
     }
 }
