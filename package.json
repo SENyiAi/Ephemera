@@ -5,6 +5,10 @@
   "version": "0.1.0",
   "publisher": "ephemera",
   "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SENyiAi/Ephemera"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -21,7 +25,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
