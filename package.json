@@ -109,6 +109,18 @@
         "title": "复制密码",
         "category": "Ephemera",
         "icon": "$(key)"
+      },
+      {
+        "command": "ephemera.syncWorkspace",
+        "title": "%ephemera.commands.syncWorkspace%",
+        "category": "Ephemera",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "ephemera.openRemoteSSH",
+        "title": "%ephemera.commands.openRemoteSSH%",
+        "category": "Ephemera",
+        "icon": "$(remote)"
       }
     ],
     "viewsContainers": {
@@ -197,6 +209,16 @@
           "group": "copy@2"
         },
         {
+          "command": "ephemera.syncWorkspace",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "manage@4"
+        },
+        {
+          "command": "ephemera.openRemoteSSH",
+          "when": "view == ephemeraInstances && viewItem == instance",
+          "group": "manage@5"
+        },
+        {
           "command": "ephemera.deleteInstance",
           "when": "view == ephemeraInstances && viewItem == instance",
           "group": "danger@1"
@@ -281,6 +303,12 @@
           "type": "number",
           "default": 24,
           "description": "默认实例使用时长（小时）"
+        },
+        "ephemera.syncExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [".git", "node_modules", "out", "dist", ".vscode"],
+          "description": "代码同步时排除的文件/目录列表"
         }
       }
     }

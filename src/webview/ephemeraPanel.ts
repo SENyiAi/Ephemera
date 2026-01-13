@@ -24,6 +24,9 @@ export class EphemeraPanel {
                     case 'powerOp':
                         await this._handlePowerOp(message.instanceId, message.operation);
                         return;
+                    case 'sync':
+                        vscode.commands.executeCommand('ephemera.syncWorkspace', { instance: message.instance });
+                        return;
                 }
             },
             null,
@@ -121,14 +124,14 @@ export class EphemeraPanel {
                 <div class="instance-details">
                     <div><span>套餐:</span> ${i.plan}</div>
                     <div><span>系统:</span> ${i.os}</div>
-                    <div><span>CPU性能:</span> ${i.cpu}C (${i.cpu_name})</div>
+                    <div><span>性能:</span> ${i.cpu}C (${i.cpu_name})</div>
                     <div><span>到期:</span> ${i.expiration_at}</div>
                 </div>
                 <div class="instance-actions">
                     <button class="btn-icon" onclick="powerOp(${i.id}, 'start')" title="启动" ${i.status === 'active' ? 'disabled' : ''}>▶️</button>
                     <button class="btn-icon" onclick="powerOp(${i.id}, 'stop')" title="停止" ${i.status !== 'active' ? 'disabled' : ''}>⏹️</button>
-                    <button class="btn-icon" onclick="powerOp(${i.id}, 'reboot')" title="重启">🔄</button>
-                    <button class="btn-secondary" onclick="copyIp('${i.ipv4}')">复制 IP</button>
+                    <button class="btn-primary" onclick='sync(${JSON.stringify(i)})'>同步代码</button>
+                    <button class="btn-secondary" onclick="copyIp('${i.ipv4}')">IP</button>
                 </div>
             </div>
         `).join('');
@@ -153,15 +156,16 @@ export class EphemeraPanel {
         .btn-icon:disabled { opacity: 0.3; cursor: not-allowed; }
         button:hover { opacity: 0.8; }
         
-        .instance-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .instance-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px; }
         .instance-card { background: var(--vscode-editor-background); border: 1px solid var(--vscode-panel-border); padding: 15px; border-radius: 6px; }
         .instance-header { display: flex; align-items: center; margin-bottom: 10px; }
         .status-dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
         .status-dot.active { background: #4caf50; box-shadow: 0 0 5px #4caf50; }
         .status-dot.stopped { background: #f44336; }
-        .hostname { font-weight: bold; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; }
-        .instance-ip { font-size: 0.9em; opacity: 0.7; }
+        .hostname { font-weight: bold; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 10px; }
+        .instance-ip { font-size: 0.9em; opacity: 0.7; font-family: monospace; }
         .instance-details { font-size: 0.85em; margin-bottom: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+        .instance-details div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .instance-details span { opacity: 0.6; }
         .instance-actions { display: flex; gap: 8px; justify-content: flex-end; border-top: 1px solid var(--vscode-panel-border); padding-top: 10px; }
     </style>
@@ -226,6 +230,9 @@ export class EphemeraPanel {
         }
         function powerOp(instanceId, operation) {
             vscode.postMessage({ command: 'powerOp', instanceId: instanceId, operation: operation });
+        }
+        function sync(instance) {
+            vscode.postMessage({ command: 'sync', instance: instance });
         }
         function copyIp(ip) {
             navigator.clipboard.writeText(ip);
