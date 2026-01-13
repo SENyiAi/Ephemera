@@ -21,6 +21,9 @@ export class EphemeraPanel {
                     case 'sync': vscode.commands.executeCommand('ephemera.syncWorkspace', { instance: message.instance }); return;
                     case 'bindDomain': await this._handleBindDomain(message.instance, message.subdomain); return;
                     case 'applySsl': await this._handleApplySsl(message.instance, message.subdomain, message.method); return;
+                    case 'quickInstall': await this._handleQuickInstall(message.instance, message.tool); return;
+                    case 'renew': await this._handleRenew(message.instanceId); return;
+                    case 'openTerminal': this._handleOpenTerminal(message.instance); return;
                     case 'openFileManager':
                         this._currentInstance = message.instance;
                         this._currentPath = `/home/${this._currentInstance?.user || 'root'}`;
@@ -129,6 +132,64 @@ export class EphemeraPanel {
         }
     }
 
+    private async _handleRenew(instanceId: number) {
+        try {
+            const response = await this.apiClient.renewInstance(instanceId, 24);
+            if (response.code === 200) { vscode.window.showInformationMessage(`续期成功 (24h)`); this._update(); }
+        } catch (error: any) { vscode.window.showErrorMessage(`续期失败: ${error.message}`); }
+    }
+
+    private async _handleQuickInstall(instance: EphemeraInstance, tool: string) {
+        let cmd = '';
+        let title = '';
+
+        switch (tool) {
+            case 'docker':
+                title = '安装 Docker';
+                cmd = `curl -fsSL https://get.docker.com | bash && systemctl enable --now docker`;
+                break;
+            case 'nginx':
+                title = '安装 Nginx';
+                cmd = `apt-get update && apt-get install -y nginx && systemctl enable --now nginx`;
+                break;
+            case 'nodejs':
+                title = '安装 Node.js';
+                cmd = `curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && apt-get install -y nodejs`;
+                break;
+            case 'docker-compose':
+                title = '安装 Docker Compose';
+                cmd = `curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose`;
+                break;
+            case 'bt-panel':
+                title = '安装 宝塔面板';
+                cmd = `if [ -f /usr/bin/apt ]; then wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && bash install.sh ed8484bec; else yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh ed8484bec; fi`;
+                break;
+        }
+
+        try {
+            await vscode.window.withProgress({
+                location: vscode.ProgressLocation.Notification,
+                title: `正在 ${title}...`,
+                cancellable: false
+            }, async () => {
+                await this.apiClient.runCommandAndWait(instance.id, cmd, 300000); // 5分钟超时
+            });
+            vscode.window.showInformationMessage(`${title}成功`);
+        } catch (error: any) {
+            vscode.window.showErrorMessage(`${title}失败: ${error.message}`);
+        }
+    }
+
+    private _handleOpenTerminal(instance: EphemeraInstance) {
+        const terminal = vscode.window.createTerminal(`Ephemera: ${instance.hostname}`);
+        // Assuming the user has our SSH config or we can just use the direct SSH command if we have the password/key
+        // For convenience, we'll try to use the password-based SSH command if available, 
+        // but typically we recommend users to use SSH Keys.
+        // Here we just use the command string for the user to paste or we send it.
+        terminal.show();
+        terminal.sendText(`ssh ${instance.user || 'root'}@${instance.ipv4}`);
+    }
+
     private async _handlePowerOp(instanceId: number, operation: string) {
         try {
             let action: 'boot' | 'shutdown' | 'restart' | 'poweroff' = 'boot';
@@ -184,9 +245,22 @@ export class EphemeraPanel {
         const config = vscode.workspace.getConfiguration('ephemera');
         const cfDomain = config.get<string>('cloudflareDomain') || '未配置域名';
 
-        const instanceList = instances.data.map((i: EphemeraInstance) => `
+        const instanceList = instances.data.map((i: EphemeraInstance) => {
+            const cpu = i.state?.cpu || 0;
+            const memTotal = i.state?.memory?.memtotal || 1;
+            const memAvail = i.state?.memory?.memavailable || 0;
+            const memUsage = Math.round(((memTotal - memAvail) / memTotal) * 100);
+
+            return `
             <div class="card">
-                <div class="card-header"><span class="status ${i.status}"></span><b>${i.hostname}</b> <code>${i.ipv4}</code></div>
+                <div class="card-header">
+                    <span class="status ${i.status}"></span>
+                    <b>${i.hostname}</b> 
+                    <code>${i.ipv4}</code>
+                    <span style="margin-left:auto; font-size: 10px; opacity: 0.7;">
+                        CPU: ${cpu}% | MEM: ${memUsage}%
+                    </span>
+                </div>
                 <div class="card-body">
                     <div><span>套餐:</span> ${i.plan}</div>
                     <div><span>到期:</span> ${i.expiration_at}</div>
@@ -201,8 +275,16 @@ export class EphemeraPanel {
                             <button class="secondary" onclick="applySsl('${i.id}', ${JSON.stringify(i)})">申请SSL</button>
                         </div>
                     </div>
+                    <div class="toolbox" style="margin-top:10px; display:flex; gap: 5px; flex-wrap: wrap;">
+                        <button style="font-size:11px" onclick="quickInstall(${JSON.stringify(i)}, 'docker')">🐳 Docker</button>
+                        <button style="font-size:11px" onclick="quickInstall(${JSON.stringify(i)}, 'nginx')">🌐 Nginx</button>
+                        <button style="font-size:11px" onclick="quickInstall(${JSON.stringify(i)}, 'nodejs')">🟢 Node.js</button>
+                        <button style="font-size:11px" onclick="quickInstall(${JSON.stringify(i)}, 'docker-compose')">📦 Compose</button>
+                    </div>
                 </div>
                 <div class="actions">
+                    <button title="续期 24h" onclick="renew(${i.id})">⏳</button>
+                    <button title="打开终端" onclick='openTerminal(${JSON.stringify(i)})'>📟</button>
                     <button onclick="powerOp(${i.id}, 'start')" ${i.status === 'active' ? 'disabled' : ''}>▶️</button>
                     <button onclick="powerOp(${i.id}, 'stop')" ${i.status !== 'active' ? 'disabled' : ''}>⏹️</button>
                     <button class="primary" onclick='openFileManager(${JSON.stringify(i)})'>文件</button>
@@ -212,8 +294,8 @@ export class EphemeraPanel {
         `).join('');
 
         return `<!DOCTYPE html><html><head><style>body{font-family:var(--vscode-font-family);color:var(--vscode-foreground);padding:20px;background:var(--vscode-editor-background);}.card{background:var(--vscode-sideBar-background);border:1px solid var(--vscode-panel-border);padding:15px;border-radius:8px;margin-bottom:15px;}.card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}.status{width:10px;height:10px;border-radius:50%;}.status.active{background:#4caf50;}.status.stopped{background:#f44336;}.domain-tool{margin-top:10px;padding:8px;background:var(--vscode-editor-background);border-radius:4px;}.actions{display:flex;gap:10px;margin-top:10px;justify-content:flex-end;}input{background:var(--vscode-input-background);color:var(--vscode-input-foreground);border:1px solid var(--vscode-input-border);padding:4px;}button{cursor:pointer;padding:4px 8px;border:none;border-radius:4px;background:var(--vscode-button-background);color:var(--vscode-button-foreground);}button:disabled{opacity:0.3;}.primary{background:var(--vscode-button-hoverBackground);}.secondary{background:var(--vscode-badge-background);color:var(--vscode-badge-foreground);}</style></head>
-<body><h2>实例管理</h2><div class="grid">${instanceList || '无实例'}</div>
-<script>const vscode=acquireVsCodeApi();function refresh(){vscode.postMessage({command:'refresh'});}function powerOp(id,op){vscode.postMessage({command:'powerOp',instanceId:id,operation:op});}function sync(i){vscode.postMessage({command:'sync',instance:i});}function openFileManager(i){vscode.postMessage({command:'openFileManager',instance:i});}function bindDomain(id,i){const sub=document.getElementById('sub-'+id).value;vscode.postMessage({command:'bindDomain',instance:i,subdomain:sub});}function applySsl(id,i){const sub=document.getElementById('sub-'+id).value;const method=document.getElementById('method-'+id).value;vscode.postMessage({command:'applySsl',instance:i,subdomain:sub,method:method});}</script></body></html>`;
+<body><div style="display:flex; align-items:center; justify-content:space-between;"><h2>实例管理</h2><button onclick="refresh()">🔄 刷新</button></div><div class="grid">${instanceList || '无实例'}</div>
+<script>const vscode=acquireVsCodeApi();function refresh(){vscode.postMessage({command:'refresh'});}function renew(id){vscode.postMessage({command:'renew',instanceId:id});}function powerOp(id,op){vscode.postMessage({command:'powerOp',instanceId:id,operation:op});}function sync(i){vscode.postMessage({command:'sync',instance:i});}function openFileManager(i){vscode.postMessage({command:'openFileManager',instance:i});}function bindDomain(id,i){const sub=document.getElementById('sub-'+id).value;vscode.postMessage({command:'bindDomain',instance:i,subdomain:sub});}function applySsl(id,i){const sub=document.getElementById('sub-'+id).value;const method=document.getElementById('method-'+id).value;vscode.postMessage({command:'applySsl',instance:i,subdomain:sub,method:method});}function quickInstall(i,tool){vscode.postMessage({command:'quickInstall',instance:i,tool:tool});}function openTerminal(i){vscode.postMessage({command:'openTerminal',instance:i});}</script></body></html>`;
     }
 
     public dispose() {
