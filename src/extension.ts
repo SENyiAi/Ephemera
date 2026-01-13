@@ -355,8 +355,15 @@ function registerCommands(context: vscode.ExtensionContext) {
 
             if (action.value === 'terminal') {
                 const terminal = vscode.window.createTerminal(`SSH: ${item.instance.hostname}`);
+                // 提示密码
+                vscode.window.showInformationMessage(`实例密码: ${item.instance.password}`, '复制密码').then(sel => {
+                    if (sel === '复制密码') { vscode.env.clipboard.writeText(item.instance.password); }
+                });
                 terminal.sendText(sshCommand);
                 terminal.show();
+            } else if (action.value === 'remote') {
+                // 自动生成 SSH 配置并尝试连接
+                await integrateWithRemoteSSH(item.instance);
             } else if (action.value === 'copy') {
                 await vscode.env.clipboard.writeText(sshCommand);
                 vscode.window.showInformationMessage('SSH 命令已复制到剪贴板');
@@ -476,6 +483,32 @@ function registerPowerCommand(
             }
         })
     );
+}
+
+async function integrateWithRemoteSSH(instance: EphemeraInstance) {
+    const sshConfig = vscode.workspace.getConfiguration('remote.SSH');
+    
+    // 自动配置 SSH 快捷方式
+    const hostLabel = `Ephemera-${instance.hostname}-${instance.ipv4}`;
+    
+    // 尝试调用 Remote-SSH 的命令（如果已安装）
+    try {
+        await vscode.commands.executeCommand('opensshremotes.openEmptyWindow', {
+            host: `${instance.user}@${instance.ipv4}`
+        });
+        
+        vscode.window.showInformationMessage(`正在通过 Remote-SSH 连接到 ${instance.ipv4}... 密码为: ${instance.password}`, '复制密码').then(sel => {
+            if (sel === '复制密码') { vscode.env.clipboard.writeText(instance.password); }
+        });
+    } catch (e) {
+        const install = await vscode.window.showErrorMessage(
+            '未检测到 "Remote - SSH" 扩展，推荐安装以在云端直接编辑代码。',
+            '去安装'
+        );
+        if (install === '去安装') {
+            vscode.commands.executeCommand('extension.open', 'ms-vscode-remote.remote-ssh');
+        }
+    }
 }
 
 async function loadCredentials(context: vscode.ExtensionContext) {
