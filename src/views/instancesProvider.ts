@@ -9,11 +9,43 @@ export class InstanceTreeItem extends vscode.TreeItem {
         super(instance.hostname, collapsibleState);
         
         this.tooltip = this.getTooltip();
-        this.description = `${instance.ipv4} | ${instance.plan}`;
+        this.description = this.getShortDescription();
         this.contextValue = 'instance';
-        this.iconPath = new vscode.ThemeIcon(
-            instance.status === 'active' ? 'vm-running' : 'vm-outline'
-        );
+        this.iconPath = this.getIcon();
+    }
+
+    private getShortDescription(): string {
+        const i = this.instance;
+        // 计算剩余时间
+        const expDate = new Date(i.expiration_at);
+        const now = new Date();
+        const diffMs = expDate.getTime() - now.getTime();
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        
+        let timeLeftStr = '';
+        if (diffHours < 0) {
+            timeLeftStr = '已过期';
+        } else if (diffHours < 24) {
+            timeLeftStr = `${diffHours}h`;
+        } else {
+            timeLeftStr = `${Math.floor(diffHours / 24)}d`;
+        }
+
+        return `${i.ipv4} | ${i.plan} | ${timeLeftStr}`;
+    }
+
+    private getIcon(): vscode.ThemeIcon {
+        const status = this.instance.status.toLowerCase();
+        switch (status) {
+            case 'active':
+                return new vscode.ThemeIcon('circle-filled', new vscode.ThemeColor('debugIcon.startForeground'));
+            case 'stopped':
+                return new vscode.ThemeIcon('circle-outline', new vscode.ThemeColor('debugIcon.stopForeground'));
+            case 'suspending':
+                return new vscode.ThemeIcon('warning', new vscode.ThemeColor('charts.orange'));
+            default:
+                return new vscode.ThemeIcon('question', new vscode.ThemeColor('disabledForeground'));
+        }
     }
 
     private getTooltip(): string {
