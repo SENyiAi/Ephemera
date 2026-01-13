@@ -309,6 +309,16 @@
           "items": { "type": "string" },
           "default": [".git", "node_modules", "out", "dist", ".vscode"],
           "description": "代码同步时排除的文件/目录列表"
+        },
+        "ephemera.cloudflareZoneId": {
+          "type": "string",
+          "default": "",
+          "description": "Cloudflare Zone ID"
+        },
+        "ephemera.cloudflareDomain": {
+          "type": "string",
+          "default": "",
+          "description": "绑定的主域名 (如 example.com)"
         }
       }
     }
