@@ -84,8 +84,13 @@ export class EphemeraPanel {
     private async _handleRenew(instanceId: number) {
         try {
             const response = await this.apiClient.renewInstance(instanceId, 24);
-            if (response.code === 200) { vscode.window.showInformationMessage(`续期成功 (24h)`); this._update(); }
-        } catch (error: any) { vscode.window.showErrorMessage(`续期失败: ${error.message}`); }
+            if (response.code === 200) { 
+                vscode.window.showInformationMessage(`成功续期 24 小时`); 
+                this._update(); 
+            } else {
+                vscode.window.showErrorMessage(`续期失败: ${response.message}`);
+            }
+        } catch (error: any) { vscode.window.showErrorMessage(`请求失败: ${error.message}`); }
     }
 
     private async _handleRebuild(instanceId: number) {
@@ -101,10 +106,15 @@ export class EphemeraPanel {
     private async _handlePowerOp(instanceId: number, operation: string) {
         try {
             let action: any = operation === 'start' ? 'boot' : (operation === 'reboot' ? 'restart' : 'shutdown');
-            await this.apiClient.powerOperation(instanceId, action);
-            vscode.window.showInformationMessage(`操作 '${operation}' 已发送`);
-            setTimeout(() => this._update(), 2000);
-        } catch (error: any) { vscode.window.showErrorMessage(`操作失败: ${error.message}`); }
+            if (operation === 'stop') action = 'shutdown';
+            const response = await this.apiClient.powerOperation(instanceId, action);
+            if (response.code === 200) {
+                vscode.window.showInformationMessage(`操作 '${operation}' 已发送`);
+                setTimeout(() => this._update(), 2000);
+            } else {
+                vscode.window.showErrorMessage(`操作失败: ${response.message}`);
+            }
+        } catch (error: any) { vscode.window.showErrorMessage(`请求失败: ${error.message}`); }
     }
 
     private async _handleCat(path: string) {
@@ -148,10 +158,18 @@ export class EphemeraPanel {
 
     private async _handleCreate(data: any) {
         try {
-            await this.apiClient.deployInstance({ product_id: parseInt(data.plan), os_id: parseInt(data.os), time: parseInt(data.time) });
-            vscode.window.showInformationMessage(`实例创建请求已提交`);
-            setTimeout(() => this._update(), 3000);
-        } catch (error: any) { vscode.window.showErrorMessage(`创建失败: ${error.message}`); }
+            const response = await this.apiClient.deployInstance({ 
+                product_id: parseInt(data.plan), 
+                os_id: parseInt(data.os), 
+                time: parseInt(data.time) 
+            });
+            if (response.code === 200) {
+                vscode.window.showInformationMessage(`实例创建请求已提交`);
+                setTimeout(() => this._update(), 3000);
+            } else {
+                vscode.window.showErrorMessage(`部署失败: ${response.message}`);
+            }
+        } catch (error: any) { vscode.window.showErrorMessage(`创建请求失败: ${error.message}`); }
     }
 
     private async _update() { this._panel.webview.html = await this._getHtmlForWebview(); }
