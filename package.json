@@ -33,6 +33,11 @@
         "category": "Ephemera"
       },
       {
+        "command": "ephemera.setCloudflareToken",
+        "title": "设置 Cloudflare Token",
+        "category": "Ephemera"
+      },
+      {
         "command": "ephemera.refreshInstances",
         "title": "刷新实例列表",
         "category": "Ephemera",
