@@ -4,7 +4,7 @@
   "description": "管理 Ephemera EVO 云实例的 VS Code 扩展",
   "version": "0.1.0",
   "publisher": "ephemera",
-  "icon": "resources/icon.png",
+  "icon": "resources/icon.svg",
   "repository": {
     "type": "git",
     "url": "https://github.com/SENyiAi/Ephemera"
