@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { EphemeraAPIClient, EphemeraInstance } from './api/client';
 import { InstancesProvider, InstanceTreeItem } from './views/instancesProvider';
 import { PlansProvider } from './views/plansProvider';
+import { CreateInstancePanel } from './webview/createInstancePanel';
 
 let apiClient: EphemeraAPIClient;
 let instancesProvider: InstancesProvider;
@@ -147,108 +148,7 @@ function registerCommands(context: vscode.ExtensionContext) {
     // Create Instance
     context.subscriptions.push(
         vscode.commands.registerCommand('ephemera.createInstance', async () => {
-            try {
-                // Get plans
-                const plansResult = await apiClient.getPlans();
-                if (plansResult.code !== 200) {
-                    vscode.window.showErrorMessage('获取套餐列表失败');
-                    return;
-                }
-
-                const plans = plansResult.data.filter(p => p.stock > 0);
-                const planItems = plans.map(p => ({
-                    label: p.name,
-                    description: `${p.cpu}C/${p.memory/1024}G/${p.disk}G - 库存: ${p.stock}`,
-                    detail: `CPU: ${p.cpu_name}, 磁盘: ${p.disk_type}`,
-                    plan: p
-                }));
-
-                const selectedPlan = await vscode.window.showQuickPick(planItems, {
-                    placeHolder: '选择套餐'
-                });
-
-                if (!selectedPlan) {
-                    return;
-                }
-
-                // Get OS images
-                const osResult = await apiClient.getOSImages(selectedPlan.plan.id);
-                if (osResult.code !== 200) {
-                    vscode.window.showErrorMessage('获取操作系统列表失败');
-                    return;
-                }
-
-                const osItems: Array<{label: string; description: string; osId: number}> = [];
-                osResult.data.forEach(group => {
-                    group.os_list.forEach(os => {
-                        osItems.push({
-                            label: os.name,
-                            description: group.group_name,
-                            osId: os.id
-                        });
-                    });
-                });
-
-                const selectedOS = await vscode.window.showQuickPick(osItems, {
-                    placeHolder: '选择操作系统'
-                });
-
-                if (!selectedOS) {
-                    return;
-                }
-
-                // Get time
-                const timeStr = await vscode.window.showInputBox({
-                    prompt: '使用时长（小时）',
-                    value: '24',
-                    validateInput: (value) => {
-                        const num = parseInt(value);
-                        if (isNaN(num) || num <= 0) {
-                            return '请输入有效的小时数';
-                        }
-                        return null;
-                    }
-                });
-
-                if (!timeStr) {
-                    return;
-                }
-
-                const time = parseInt(timeStr);
-
-                // Deploy
-                await vscode.window.withProgress({
-                    location: vscode.ProgressLocation.Notification,
-                    title: '正在创建实例...',
-                    cancellable: false
-                }, async (progress) => {
-                    const result = await apiClient.deployInstance({
-                        product_id: selectedPlan.plan.id,
-                        os_id: selectedOS.osId,
-                        time,
-                        ssh_key_id: null,
-                        boot_script: null
-                    });
-
-                    if (result.code === 200) {
-                        vscode.window.showInformationMessage(
-                            `实例创建成功！\nIP: ${result.data.ipv4}\n密码: ${result.data.password}`,
-                            '复制密码'
-                        ).then(selection => {
-                            if (selection === '复制密码') {
-                                vscode.env.clipboard.writeText(result.data.password);
-                            }
-                        });
-                        instancesProvider.refresh();
-                        updateStatusBar();
-                    } else {
-                        vscode.window.showErrorMessage(`创建失败: ${result.message}`);
-                    }
-                });
-
-            } catch (error: any) {
-                vscode.window.showErrorMessage(`创建实例出错: ${error.message}`);
-            }
+            await CreateInstancePanel.createOrShow(context.extensionUri, apiClient);
         })
     );
 
