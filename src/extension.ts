@@ -14,6 +14,11 @@ let autoRefreshInterval: NodeJS.Timeout | undefined;
 
 export async function activate(context: vscode.ExtensionContext) {
     console.log('Ephemera: Activating...');
+    
+    // 立即注册命令，确保即使初始化出错命令也能响应（报错提示）
+    const secretStorage = context.secrets;
+    registerCommands(context, secretStorage);
+
     try {
         const config = vscode.workspace.getConfiguration('ephemera');
         const baseUrl = config.get<string>('apiBaseUrl') || 'https://app.alice.ws';
@@ -21,7 +26,6 @@ export async function activate(context: vscode.ExtensionContext) {
         apiClient = new EphemeraAPIClient(baseUrl);
         cfClient = new CloudflareClient(context);
 
-        const secretStorage = context.secrets;
         const clientId = await secretStorage.get('ephemera.clientId');
         const secret = await secretStorage.get('ephemera.clientSecret');
 
@@ -38,7 +42,6 @@ export async function activate(context: vscode.ExtensionContext) {
         statusBarItem.command = 'ephemera.openConsole';
         context.subscriptions.push(statusBarItem);
         
-        registerCommands(context, secretStorage);
         setupAutoRefresh();
         updateStatusBar();
         

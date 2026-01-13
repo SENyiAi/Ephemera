@@ -21,17 +21,8 @@
     "remote",
     "ssh"
   ],
-  "activationEvents": [
-    "onStartupFinished",
-    "onView:ephemeraInstances",
-    "onView:ephemeraPlans",
-    "onCommand:ephemera.openConsole",
-    "onCommand:ephemera.refreshInstances",
-    "onCommand:ephemera.createInstance",
-    "onCommand:ephemera.setCredentials",
-    "onCommand:ephemera.setCloudflareToken"
-  ],
-  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -148,11 +139,13 @@
       "ephemera-sidebar": [
         {
           "id": "ephemeraInstances",
-          "name": "实例列表"
+          "name": "实例列表",
+          "icon": "resources/icon.svg"
         },
         {
           "id": "ephemeraPlans",
-          "name": "可用套餐"
+          "name": "可用套餐",
+          "icon": "resources/icon.svg"
         }
       ]
     },
