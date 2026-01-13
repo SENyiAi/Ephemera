@@ -203,4 +203,20 @@ export class EphemeraAPIClient {
         const response = await this.client.get(`/cli/v1/evo/instances/${instanceId}/exec/${commandUid}`);
         return response.data;
     }
+
+    async runCommandAndWait(instanceId: number, command: string, timeoutMs: number = 10000): Promise<string> {
+        const deployRes = await this.executeCommand(instanceId, command);
+        if (deployRes.code !== 200) throw new Error(deployRes.message);
+        const uid = deployRes.data.command_uid;
+        
+        const start = Date.now();
+        while (Date.now() - start < timeoutMs) {
+            const res = await this.getCommandResult(instanceId, uid);
+            if (res.data.status === 'fetched') {
+                return Buffer.from(res.data.output || '', 'base64').toString();
+            }
+            await new Promise(r => setTimeout(r, 1000));
+        }
+        throw new Error('Command timed out');
+    }
 }
